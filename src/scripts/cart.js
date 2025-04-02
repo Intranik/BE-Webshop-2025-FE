@@ -1,37 +1,104 @@
-// // Function to load the cart from localStorage and display it
-// const loadCart = () => {
-//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//     const cartProductList = document.getElementById('cart-product-list');
-//     const totalProducts = cart.length;
-//     let totalPrice = 0;
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const shippingCost = 49; // Fixed shipping cost
+const taxRate = 0.12;
 
-//     // Clear the cart list before adding items
-//     cartProductList.innerHTML = '';
+document.addEventListener("DOMContentLoaded", () => {
+    renderCart();
+});
 
-//     cart.forEach(product => {
-//       // Create a list item for each product in the cart
-//       const productLi = document.createElement('li');
-//       productLi.classList.add('list-group-item', 'shadow-sm');
-      
-//       const productTitle = document.createElement('p');
-//       productTitle.classList.add('text-dark');
-//       productTitle.textContent = product.name;
+function updateCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+    updateSummary();
+}
 
-//       const productPrice = document.createElement('p');
-//       productPrice.classList.add('text-danger', 'fs-4');
-//       productPrice.textContent = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(product.price);
-      
-//       productLi.append(productTitle, productPrice);
-//       cartProductList.appendChild(productLi);
+function renderCart() {
+    const cartContainer = document.getElementById("cart-items");
+    cartContainer.innerHTML = "";
+    
+    cart.forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("card", "mb-2", "p-2", "d-flex", "align-items-center", "flex-row");
 
-//       // Update total price
-//       totalPrice += product.price;
-//     });
+        const productImg = document.createElement("img");
+        productImg.src = product.image_url;
+        productImg.style.width = "50px";
+        
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "X";
+        removeBtn.classList.add("btn", "btn-danger", "ms-2");
+        removeBtn.onclick = () => removeFromCart(product.id);
 
-//     // Display total products and total price
-//     document.getElementById('total-products').textContent = totalProducts;
-//     document.getElementById('total-price').textContent = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(totalPrice);
-//   }
+        const productInfo = document.createElement("div");
+        productInfo.classList.add("mx-3");
+        productInfo.innerHTML = `<strong>${product.name}</strong> - ${product.price} SEK`;
 
-//   // Call the function when the page loads
-//   window.addEventListener('DOMContentLoaded', loadCart);
+        const quantityContainer = document.createElement("div");
+        quantityContainer.classList.add("d-flex", "align-items-center", "ms-auto");
+        
+        const minusBtn = document.createElement("button");
+        minusBtn.textContent = "-";
+        minusBtn.classList.add("btn", "btn-outline-secondary", "me-1");
+        minusBtn.onclick = () => changeQuantity(product.id, -1);
+        
+        const quantityInput = document.createElement("input");
+        quantityInput.type = "number";
+        quantityInput.value = product.quantity;
+        quantityInput.classList.add("form-control", "text-center");
+        quantityInput.style.width = "50px";
+        quantityInput.readOnly = true;
+        
+        const plusBtn = document.createElement("button");
+        plusBtn.textContent = "+";
+        plusBtn.classList.add("btn", "btn-outline-secondary", "ms-1");
+        plusBtn.onclick = () => changeQuantity(product.id, 1);
+        
+        quantityContainer.append(minusBtn, quantityInput, plusBtn);
+        productCard.append(removeBtn, productImg, productInfo, quantityContainer);
+        cartContainer.append(productCard);
+    });
+    
+    if (cart.length > 0) {
+        const continueBtnContainer = document.createElement("div");
+        continueBtnContainer.classList.add("card", "p-3", "mt-2", "text-center");
+        
+        const continueBtn = document.createElement("button");
+        continueBtn.textContent = "Continue";
+        continueBtn.classList.add("btn", "btn-primary");
+        
+        continueBtnContainer.append(continueBtn);
+        cartContainer.append(continueBtnContainer);
+    }
+    updateSummary();
+}
+
+function changeQuantity(id, amount) {
+    let product = cart.find(item => item.id === id);
+    if (product) {
+        product.quantity += amount;
+        if (product.quantity <= 0) {
+            removeFromCart(id);
+        } else {
+            updateCart();
+        }
+    }
+}
+
+function removeFromCart(id) {
+    const index = cart.findIndex(item => item.id === id);
+    if (index !== -1) {
+        cart.splice(index, 1);
+    }
+    updateCart();
+}
+
+function updateSummary() {
+    const totalProductPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const totalTax = totalProductPrice * taxRate;
+    const totalCost = totalProductPrice + shippingCost;
+    
+    document.getElementById("total-product-price").textContent = `${totalProductPrice} SEK`;
+    document.getElementById("tax").textContent = `${totalTax.toFixed(2)} SEK`;
+    document.getElementById("shipping-cost").textContent = `${shippingCost} SEK`;
+    document.getElementById("total-cost").textContent = `${totalCost} SEK`;
+}

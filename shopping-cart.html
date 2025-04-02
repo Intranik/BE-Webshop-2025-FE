@@ -1,25 +1,23 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="./src/scripts/home.js" defer></script>
-    <script src="./src/scripts/login.js" defer></script>
-    <script src="./src/scripts/cart.js" defer></script>
-
-    <title>Document</title>
-</head>
-<body style="background-color: #f9fafb;">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="./src/scripts/cart.js" type="module" defer></script>
+    
+        <title>Shopping Cart</title>
+    </head>
+<body>
     <nav class="navbar bg-white shadow-sm">
         <div class="container d-flex justify-content-center gap-4">
             <div class="me-auto">
                 <a class="navbar-brand" href="./index.html">
-                    <img src="HAKIM_Livs_4.png"  alt="Bootstrap" height="50">
+                    <img src="./HAKIM_Livs_4.png"  alt="Bootstrap" height="50">
                 </a>
             </div>
             <div class="d-flex flex-nowrap gap-5">
@@ -28,11 +26,17 @@
                   <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
                 <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Logga in</p>
                 </a>
-              </div>
+            </div>
               <div id="logout-button" class="d-none d-flex flex-column justify-content-center align-items-center">
                 <a href="#" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center">
                   <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
                 <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Logga ut</p>
+                </a>
+              </div>
+              <div id="cart-button">
+                <a href="./shopping-cart.html" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center">
+                  <i class="fa-solid fa-cart-shopping fs-3" style="color: #010768;"></i>
+                  <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Till kassan</p>
                 </a>
               </div>
               <div id="admin-button" class="d-none d-flex flex-column justify-content-center align-items-center">
@@ -44,79 +48,22 @@
             </div>
         </div>
     </nav>
-    <div id="cart-container" class="container py-4">
-        <h2>Shopping Cart</h2>
-        <ul id="cart-product-list" class="list-group"></ul>
-        <div id="cart-summary" class="mt-4">
-          <p><strong>Total Products: </strong><span id="total-products">0</span></p>
-          <p><strong>Total Price: </strong><span id="total-price">0</span></p>
+    <div class="container d-flex justify-content-center mt-5">
+        <!-- Cart Items (Left) -->
+        <div class="container me-3 p-3 border rounded" style="width: 50%;">
+            <h3>Shopping Cart</h3>
+            <div id="cart-items"></div>
+        </div>
+
+        <!-- Cart Summary (Right) -->
+        <div class="container p-3 border rounded" style="width: 30%;">
+            <h3>Summary</h3>
+            <p><strong>Total Product Price:</strong> <span id="total-product-price">0 SEK</span></p>
+            <p><strong>Tax (12% Included):</strong> <span id="tax">0 SEK</span></p>
+            <p><strong>Shipping Cost:</strong> <span id="shipping-cost">49 SEK</span></p>
+            <hr>
+            <p><strong>Total Cost:</strong> <span id="total-cost">0 SEK</span></p>
         </div>
     </div>
-</body> 
-</html> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="./src/scripts/home.js"></script>
-    <script src="./src/scripts/login.js"></script>
-
-    <title>Shopping Cart</title>
-</head>
-<body class="d-flex justify-content-center align-items-center vh-100">
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- Products Container -->
-            <div class="col-md-5 p-4 bg-light rounded shadow">
-                <h3 class="text-center">Shopping Cart</h3>
-                <ul id="cart-items" class="list-group">
-                    <!-- Products will be listed here dynamically -->
-                </ul>
-            </div>
-
-            <!-- Summary Container -->
-            <div class="col-md-4 ms-3 p-4 bg-light rounded shadow">
-                <h3 class="text-center">Summary</h3>
-                <p><strong>Total Product Price:</strong> <span id="total-price">$0.00</span></p>
-                <p><strong>Shipping Cost:</strong> <span id="shipping-cost">$5.00</span></p>
-                <hr>
-                <p><strong>Total Cost:</strong> <span id="total-cost">$5.00</span></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Example JavaScript to update total price
-        let totalPrice = 0;
-        const shippingCost = 5.00;
-
-        function addToCart(productName, price) {
-            const cartItems = document.getElementById("cart-items");
-            const listItem = document.createElement("li");
-            listItem.classList.add("list-group-item");
-            listItem.textContent = `${productName} - $${price.toFixed(2)}`;
-            cartItems.appendChild(listItem);
-
-            totalPrice += price;
-            updateSummary();
-        }
-
-        function updateSummary() {
-            document.getElementById("total-price").textContent = `$${totalPrice.toFixed(2)}`;
-            document.getElementById("total-cost").textContent = `$${(totalPrice + shippingCost).toFixed(2)}`;
-        }
-
-        // Example usage
-        addToCart("Product 1", 10.99);
-        addToCart("Product 2", 15.50);
-    </script>
-
 </body>
 </html>
