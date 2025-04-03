@@ -100,7 +100,7 @@ function renderCart() {
         continueBtnContainer.classList.add("d-flex", "justify-content-center", "mt-3");
 
         const continueBtn = document.createElement("button");
-        continueBtn.textContent = "Continue";
+        continueBtn.textContent = "Till kassan";
         continueBtn.classList.add("btn", "btn-success");
         continueBtn.style.width = "100%";
 
