@@ -26,7 +26,7 @@ function renderCart() {
         
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "X";
-        removeBtn.classList.add("btn", "btn-danger", "ms-2");
+        removeBtn.classList.add("btn", "btn-danger", "btn-sm", "px-2", "py-1");
         removeBtn.onclick = () => removeFromCart(product.id);
 
         const productInfo = document.createElement("div");
