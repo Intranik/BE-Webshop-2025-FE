@@ -109,8 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
         showLoginForm();
       } else {
         alert('Registration failed. Please try again.');
-        console.log(response.status)
-        console.log(result)
       }
     } catch (error) {
       console.error('Registration error:', error);
@@ -220,10 +218,8 @@ function hideAdminFeatures() {
 
 function checkAdminStatus(user) {
   if (user.admin) {
-      console.log("👑 Admin detected!");
       showAdminFeatures();  // Show admin UI elements
   } else {
-      console.log("👤 Regular user detected.");
       hideAdminFeatures();  // Hide admin UI elements
   }
 }

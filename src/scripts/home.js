@@ -69,8 +69,8 @@ const createProductCard = (product) => {
   productButton.addEventListener("click", (e) => {
     e.preventDefault();
     console.log(`Adding product: ${product.name}`);
-    alert("Product added!");
-    addToCart(product); // Make sure this function exists
+    // alert("Product added!");
+    addToCart(product);
   });
 
   divImg.append(productImg);

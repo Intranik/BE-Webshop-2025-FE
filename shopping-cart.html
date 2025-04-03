@@ -12,58 +12,75 @@
     
         <title>Shopping Cart</title>
     </head>
-<body>
-    <nav class="navbar bg-white shadow-sm">
-        <div class="container d-flex justify-content-center gap-4">
-            <div class="me-auto">
-                <a class="navbar-brand" href="./index.html">
-                    <img src="./HAKIM_Livs_4.png"  alt="Bootstrap" height="50">
-                </a>
-            </div>
-            <div class="d-flex flex-nowrap gap-5">
-              <div id="login-button" class="d-flex flex-column justify-content-center align-items-center">
-                <a href="#" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#loginModal">
-                  <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
-                <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Logga in</p>
-                </a>
-            </div>
-              <div id="logout-button" class="d-none d-flex flex-column justify-content-center align-items-center">
-                <a href="#" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center">
-                  <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
-                <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Logga ut</p>
-                </a>
-              </div>
-              <div id="cart-button">
-                <a href="./shopping-cart.html" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center">
-                  <i class="fa-solid fa-cart-shopping fs-3" style="color: #010768;"></i>
-                  <p class="mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768;">Till kassan</p>
-                </a>
-              </div>
-              <div id="admin-button" class="d-none d-flex flex-column justify-content-center align-items-center">
-                <a href="#" class="text-dark text-decoration-none d-flex flex-column justify-content-center align-items-center">
-                  <i class="fa-solid fa-user-gear fs-3" style="color: #010768;"></i>
-                <p class="text-start mb-0" style="font-size: 0.60rem; font-weight: bold; color: #010768; position: relative; left: -5px;">Admin</p>
-                </a>
-              </div>
+    <body style="background-color: #f9fafb;">
+      <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+            <!-- Brand Logo (Left) -->
+            <a class="navbar-brand" href="./index.html">
+                <img src="./HAKIM_Livs_4.png" alt="Logo" height="50">
+            </a>
+    
+            <!-- Navbar Toggler (Hamburger Menu) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Items (Collapsible on Small Screens) -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="d-flex flex-wrap gap-4">
+                    <!-- Login Button -->
+                    <div id="login-button" class="d-flex flex-column justify-content-center align-items-center">
+                        <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
+                            <p class="mb-0 small fw-bold" style="color: #010768;">Logga in</p>
+                        </a>
+                    </div>
+    
+                    <!-- Logout Button (Hidden by Default) -->
+                    <div id="logout-button" class="d-none d-flex flex-column justify-content-center align-items-center">
+                        <a href="#" class="text-dark text-decoration-none">
+                            <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
+                            <p class="mb-0 small fw-bold" style="color: #010768;">Logga ut</p>
+                        </a>
+                    </div>
+    
+                    <!-- Admin Button (Hidden by Default) -->
+                    <div id="admin-button" class="d-none d-flex flex-column justify-content-center align-items-center">
+                        <a href="#" class="text-dark text-decoration-none">
+                            <i class="fa-solid fa-user-gear fs-3" style="color: #010768;"></i>
+                            <p class="mb-0 small fw-bold" style="color: #010768;">Admin</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container d-flex justify-content-center mt-5">
-        <!-- Cart Items (Left) -->
-        <div class="container me-3 p-3 border rounded" style="width: 50%;">
-            <h3>Shopping Cart</h3>
-            <div id="cart-items"></div>
-        </div>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+          <!-- Cart Items (Left) -->
+          <div class="col-lg-7 col-md-8 col-12 mb-4">
+              <div class="p-3 border rounded bg-white">
+                  <div class="text-center mb-3 border-bottom pb-2">
+                      <h4>Varukorg</h4>
+                  </div>
+                  <div id="cart-items"></div>
+              </div>
+          </div>
 
-        <!-- Cart Summary (Right) -->
-        <div class="container p-3 border rounded" style="width: 30%;">
-            <h3>Summary</h3>
-            <p><strong>Total Product Price:</strong> <span id="total-product-price">0 SEK</span></p>
-            <p><strong>Tax (12% Included):</strong> <span id="tax">0 SEK</span></p>
-            <p><strong>Shipping Cost:</strong> <span id="shipping-cost">49 SEK</span></p>
-            <hr>
-            <p><strong>Total Cost:</strong> <span id="total-cost">0 SEK</span></p>
-        </div>
-    </div>
+          <!-- Cart Summary (Right) -->
+          <div class="col-lg-4 col-md-8 col-12 mb-lg-0 mb-4">
+              <div class="p-3 border rounded bg-white">
+                  <h4 class="text-center mb-4">Sammanställning</h4>
+                  <p><strong>Total Varukostnad:</strong> <span id="total-product-price" class="float-end">0 kr</span></p>
+                  <p><strong>Moms (12%):</strong> <span id="tax" class="float-end">0 kr</span></p>
+                  <p><strong>Rabatt:</strong> <span id="discount" class="float-end">0 kr</span></p>
+                  <p><strong>Frakt:</strong> <span id="shipping-cost" class="float-end">49 kr</span></p>
+                  <hr>
+                  <p><strong>Total Kostnad:</strong> <span id="total-cost" class="float-end">0 kr</span></p>
+                  <div id="continue-button-container" class="text-center"></div>
+              </div>
+          </div>
+      </div>
+  </div>
 </body>
 </html>
