@@ -28,29 +28,13 @@
             <!-- Navbar Items (Collapsible on Small Screens) -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <div class="d-flex flex-wrap gap-4">
-                    <!-- Login Button -->
-                    <div id="login-button" class="d-flex flex-column justify-content-center align-items-center">
-                        <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal">
-                            <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
-                            <p class="mb-0 small fw-bold" style="color: #010768;">Logga in</p>
-                        </a>
-                    </div>
-    
-                    <!-- Logout Button (Hidden by Default) -->
-                    <div id="logout-button" class="d-none d-flex flex-column justify-content-center align-items-center">
-                        <a href="#" class="text-dark text-decoration-none">
-                            <i class="fa-solid fa-user fs-3" style="color: #010768;"></i>
-                            <p class="mb-0 small fw-bold" style="color: #010768;">Logga ut</p>
-                        </a>
-                    </div>
-    
-                    <!-- Admin Button (Hidden by Default) -->
-                    <div id="admin-button" class="d-none d-flex flex-column justify-content-center align-items-center">
-                        <a href="#" class="text-dark text-decoration-none">
-                            <i class="fa-solid fa-user-gear fs-3" style="color: #010768;"></i>
-                            <p class="mb-0 small fw-bold" style="color: #010768;">Admin</p>
-                        </a>
-                    </div>
+                    <div id="logout-button" class="d-flex flex-column justify-content-center align-items-center">
+                      <a href="./index.html" class="text-dark text-decoration-none">
+                        <button type="button" class="gap-4 btn btn-dark bi bi-arrow-left d-flex align-items-center justify-content-center flex-grow-1">
+                          Fortsätt handla
+                        </button>
+                      </a>
+                  </div>
                 </div>
             </div>
         </div>
@@ -60,7 +44,7 @@
           <!-- Cart Items (Left) -->
           <div class="col-lg-7 col-md-8 col-12 mb-4">
               <div class="p-3 border rounded bg-white">
-                  <div class="text-center mb-3 border-bottom pb-2">
+                  <div class="d-flex justify-content-between text-center mb-3 border-bottom pb-2">
                       <h4>Varukorg</h4>
                   </div>
                   <div id="cart-items"></div>
